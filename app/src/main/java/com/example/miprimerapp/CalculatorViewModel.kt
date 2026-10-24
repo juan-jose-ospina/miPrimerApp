@@ -1,5 +1,6 @@
 package com.example.miprimerapp
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
@@ -8,41 +9,26 @@ class CalculatorViewModel: ViewModel() {
     private val model = CalculatorModel()
 
     val result = mutableStateOf("0")
-    var number1 = ""
-    var number2 = ""
-    var operator = ""
+    var contentResult = mutableListOf("0")
 
     fun manageClickButtons(valueButton: String){
         if (valueButton.isEmpty()) return
+        contentResult.add(valueButton)
 
-        if (valueButton == "+") {
-            operator = "+"
-        }
+        result.value = contentResult.joinToString("")
 
-        if (valueButton == "-") {
-            operator = "-"
-        }
+        when (valueButton) {
+            "-" -> {
 
-        if (valueButton == "="){
-            if (operator == "+"){
-                result.value = add(number1,number2)
-                return
             }
 
-            if (operator == "-"){
-                result.value = subtraction(number1,number2)
-                return
-            }
         }
 
-        if (number1.isEmpty()){
-            number1 = valueButton
-        } else {
-            number2 = valueButton
-        }
+    }
 
-        result.value = valueButton
-
+    fun calculateResult(): Double{
+        var result: Double = 0.0
+        return result
     }
 
     fun add(number1: String, number2: String): String{
@@ -56,6 +42,7 @@ class CalculatorViewModel: ViewModel() {
         }
     }
 
+    @Composable
     fun subtraction(number1: String, number2: String): String{
         val num1 = number1.toDoubleOrNull()
         val num2 = number2.toDoubleOrNull()
