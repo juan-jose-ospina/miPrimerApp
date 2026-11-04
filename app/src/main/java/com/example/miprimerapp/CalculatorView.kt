@@ -1,5 +1,6 @@
 package com.example.miprimerapp
 
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Canvas
@@ -212,5 +213,5 @@ fun calculatorButtonColors(@ColorRes colorId: Int) = ButtonDefaults.buttonColors
 @Preview(showBackground = true)
 @Composable
 fun TestView() {
-    ShowCalculator(viewModel = CalculatorViewModel(), onHistoryClick = {})
+    ShowCalculator(viewModel = viewModel(), onHistoryClick = {})
 }
